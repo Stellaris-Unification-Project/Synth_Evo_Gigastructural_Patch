@@ -1,0 +1,110 @@
+@ap_biological_mastery_POINTS = 6
+@ap_biological_mastery_COST_MULT = -0.25
+ap_biological_mastery = {
+	on_enabled = {
+		add_research_option = tech_gene_seed_purification
+		add_research_option = tech_genetic_resequencing
+		add_research_option = giga_tech_the_vat
+		hidden_effect = {
+			country_event = { id = biosyn.13 }
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "hive_mind_biological_ascension_only1"
+			NOT = { has_authority = auth_hive_mind }
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_3"
+			num_ascension_perks > 2
+		}
+		custom_tooltip = {
+			fail_text = "requires_ap_synthetic_evolution"
+			has_ascension_perk = ap_synthetic_evolution
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_glandular_acclimation"
+			has_technology = tech_glandular_acclimation
+		}
+	}
+	modifier = {
+		description = ap_biological_mastery_modifier_desc
+		description_parameters = {
+			POINTS = @ap_biological_mastery_POINTS
+			COST_MULT = @ap_biological_mastery_COST_MULT
+		}
+
+		BIOLOGICAL_species_trait_points_add = @ap_biological_mastery_POINTS
+
+		modify_species_cost_mult = @ap_biological_mastery_COST_MULT
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_biological_mastery
+			has_authority = "auth_machine_intelligence"
+		}
+		is_cyborg_empire = no
+		is_ai = no
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+ap_gestalt_biological_mastery = {
+	on_enabled = {
+		add_research_option = tech_gene_seed_purification
+		add_research_option = tech_genetic_resequencing
+		add_research_option = giga_tech_the_vat
+		hidden_effect = {
+			country_event = { id = utopia.2703 }
+		}
+	}
+	
+	potential = {
+		host_has_dlc = "Utopia"
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		has_authority = auth_machine_intelligence
+		NOT = {
+			has_ascension_perk = ap_gestalt_biological_mastery
+		}
+		is_ai = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_civic_bio_machines"
+			OR = {
+				has_civic = civic_machine_assimilator
+				has_civic = civic_machine_servitor
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_glandular_acclimation"
+			has_technology = tech_glandular_acclimation
+		}
+	}
+	
+	modifier = {
+		description = ap_gestalt_biological_mastery_modifier_desc
+		description_parameters = {
+			POINTS = @ap_biological_mastery_POINTS
+			COST_MULT = @ap_biological_mastery_COST_MULT
+		}
+
+		BIOLOGICAL_species_trait_points_add = @ap_biological_mastery_POINTS
+
+		modify_species_cost_mult = @ap_biological_mastery_COST_MULT
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
